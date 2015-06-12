@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//LOGGER" "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- service daily file -->
+	<appender name="eachStatisticsFile" class="sup.hoon.log.appender.SetAppender">
+		<param name="folderPath" value="d:/log/stat/" />
+		<param name="serverNo" value="002" />
+		<param name="serviceName" value="UBOXAPI" />
+	</appender>
+	<appender name="watchFile" class="sup.hoon.log.appender.Every5MinFileAppender">
+		<param name="File" value="d:/log/watch/" />
+		<param name="Append" value="true" />
+		<param name="serverNo" value="002" />
+		<param name="serviceName" value="UBOXAPI" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%m%n" />
+		</layout>
+	</appender>
+	
+	<!-- service Loggers -->
+	<logger name="WATCH">
+		<level value="info" />
+		<appender-ref ref="watchFile" />
+	</logger>
+	<logger name="STAT">
+		<level value="info" />
+		<appender-ref ref="eachStatisticsFile" />
+	</logger>
+	
+</log4j:configuration>
